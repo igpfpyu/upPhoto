@@ -62,32 +62,21 @@ export default class App extends Component<{}> {
         ImagePicker.showImagePicker(options, (response) => {
             if (response.didCancel) {
                 console.log('User cancelled image picker');
-            }
-            else if (response.error) {
+            }else if (response.error) {
                 console.log('ImagePicker Error: ', response.error);
-            }
-
-            else {
-
+            }else{
                 let source;
-
-                if (Platform.OS === 'android') {
+                if(Platform.OS === 'android'){
                     source = {uri: response.uri, isStatic: true}
-                } else {
+                }else{
                     source = {uri: response.uri.replace('file://', ''), isStatic: true}
                 }
-
-
-
-
                 let file;
                 if(Platform.OS === 'android'){
                     file = response.uri
                 }else {
                     file = response.uri.replace('file://', '')
                 }
-
-
                 this.setState({
                     loading:true
                 });
